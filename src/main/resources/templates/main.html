@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- 新 Bootstrap4 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- bootstrap.bundle.min.js 用于弹窗、提示、下拉菜单，包含了 popper.min.js -->
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+
+    <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <title>天黑之后</title>
+</head>
+<body>
+<th:block th:if="false">
+
+</th:block>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <a class="navbar-brand nav-link" href="/main">天黑之后语料库</a>
+    <ul class="nav navbar-nav">
+        <li><a th:href="@{/log}" class="nav-link" th:each="cookie :${#httpServletRequest.getCookies()}"
+               th:if="${cookie.getName()=='isAdmin' && cookie.getValue()=='1'}"
+               th:text="管理后台"></a>
+        </li>
+    </ul>
+</nav>
+
+<div class="container-fluid" style="margin-top: 10px;">
+    <div class="row">
+        <div class="col-xs-12 col-md-6 col-lg-4">
+            <form th:action="@{/query/wordchn}" th:method="get">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">检索中文单词</span>
+                    </div>
+                    <input type="text" class="form-control" name="word" placeholder="输入文本..">
+                    <input type="hidden" name="useLike" value="false">
+                    <div class="input-group-append">
+                        <button type="submit" class="form-control btn btn-primary">查找</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-4">
+            <form th:action="@{/query/wordchn}" th:method="get">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">检索中文单词模糊</span>
+                    </div>
+                    <input type="text" class="form-control" name="word" placeholder="输入文本..">
+                    <input type="hidden" name="useLike" value="true">
+                    <div class="input-group-append">
+                        <button type="submit" class="form-control btn btn-primary">查找</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-4">
+            <form>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">检索日文单词</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="输入文本..">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">查找</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-4">
+            <form>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">检索日文单词模糊</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="输入文本..">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">查找</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-4">
+            <form>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">检索语法</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="输入文本..">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">查找</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-4">
+            <form>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">检索语法模糊</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="输入文本..">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">查找</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-6">
+            <form th:action="@{/query/wordchn}" th:method="get">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">检索中文语句</span>
+                    </div>
+                    <input type="text" class="form-control" name="word" placeholder="输入文本..">
+                    <input type="hidden" name="useLike" value="false">
+                    <div class="input-group-append">
+                        <button type="submit" class="form-control btn btn-primary">查找</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-6">
+            <form th:action="@{/query/wordchn}" th:method="get">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">检索中文语句（模糊）</span>
+                    </div>
+                    <input type="text" class="form-control" name="word" placeholder="输入文本..">
+                    <input type="hidden" name="useLike" value="false">
+                    <div class="input-group-append">
+                        <button type="submit" class="form-control btn btn-primary">查找</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-6">
+            <form th:action="@{/query/wordchn}" th:method="get">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">检索日文语句</span>
+                    </div>
+                    <input type="text" class="form-control" name="word" placeholder="输入文本..">
+                    <input type="hidden" name="useLike" value="false">
+                    <div class="input-group-append">
+                        <button type="submit" class="form-control btn btn-primary">查找</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-6">
+            <form th:action="@{/query/wordchn}" th:method="get">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">检索日文语句（模糊)</span>
+                    </div>
+                    <input type="text" class="form-control" name="word" placeholder="输入文本..">
+                    <input type="hidden" name="useLike" value="false">
+                    <div class="input-group-append">
+                        <button type="submit" class="form-control btn btn-primary">查找</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<div class="container-fluid">
+    <div th:if="${errorMsg!=null}" th:text="${errorMsg}" class="alert alert-danger"></div>
+    <div th:unless="${errorMsg!=null}" id="accordion">
+        <div class="card" th:each="result:${results}">
+            <div class="card-header">
+                <a class="card-link" data-toggle="collapse" th:href="${'#now'+result.getValue().getSentence().getId()}" th:text="${result.getValue().getSentence().getJpnSentence()}">
+                </a>
+                <a class="card-link" data-toggle="collapse" th:href="${'#now'+result.getValue().getSentence().getId()}" th:text="${result.getValue().getSentence().getChnSentence()}">
+                </a>
+            </div>
+            <div th:id="now+${result.getValue().getSentence().getId()}" class="collapse" data-parent="#accordion">
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item list-group-item-primary">涉及到的语法：<th:block  th:each="grammar:${result.getValue().getGrammarList()}" th:text="${grammar.getGrammar()}+','"></th:block></li>
+                        <li class="list-group-item list-group-item-info" th:each="jpn_word:${result.getValue().getWordsJpList()}" th:text="${jpn_word.getCharacter()+' '+jpn_word.getType()}"></li>
+                        <li class="list-group-item list-group-item-warning" th:each="chn_word:${result.getValue().getWordsChnList()}" th:text="${chn_word.getCharacter()+' '+chn_word.getType()}"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

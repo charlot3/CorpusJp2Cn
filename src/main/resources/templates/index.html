@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- 新 Bootstrap4 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- bootstrap.bundle.min.js 用于弹窗、提示、下拉菜单，包含了 popper.min.js -->
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+
+    <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script> <title>天黑之后-语料库</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <a class="navbar-brand nav-link" href="#">天黑之后语料库</a>
+    <ul class="nav navbar-nav">
+        <li>
+            <a class="nav-link">登录</a>
+        </li>
+    </ul>
+</nav>
+
+<section style="max-width: 40rem; margin: 5rem auto">
+    <form th:action="@{/main}" th:method="post">
+        <div th:if="${errorMsg!=null}" th:text="${errorMsg}" class="alert alert-danger"></div>
+        <div class="form-group">
+            <label for="inputUsername">Username</label>
+            <input type="text" id="inputUsername" name="username" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword">Password</label>
+            <input type="password" id="inputPassword" name="password" class="form-control" required>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+    </form>
+</section>
+
+</body>
+</html>
